@@ -19,7 +19,7 @@ void setup(){
 }
 
 void draw(){
-  background(background);
+  background(0);
   
   // show and move particles
   for (int i = 0; i < explosionCount; i++) {
@@ -61,7 +61,7 @@ void mousePressed(){
   for (int i = 0; i < specialBoxes.length; i++) {
     if (specialBoxes[i].isClicked(mouseX, mouseY)) {
       specialBoxes[i].isVisible = false; // Hide the special box if clicked
-      background = 255;
+      //background = 255;
     }
   }
 }
