@@ -1,11 +1,11 @@
 Particle[] particles = new Particle[200]; 
 int explosionCount = 0;                   // Track the number of particles per explosion
-Boxes[] boxes = new Boxes[200];          // Array to hold boxes
-specialBox[] specialBoxes = new specialBox[1]; // Corrected size to match `boxes`
+Boxes[] boxes = new Boxes[200];
+specialBox[] specialBoxes = new specialBox[1];
 int background = 0;
 void setup(){
   size(1000, 1000);
-  background(background);
+  //background(background);
   
   // Initialize regular boxes
   for (int i = 0; i < boxes.length; i++) {
@@ -23,8 +23,10 @@ void draw(){
   
   // show and move particles
   for (int i = 0; i < explosionCount; i++) {
-    particles[i].move();
-    particles[i].show();
+    if (particles[i] != null) { // Check if particle exists
+      particles[i].move();
+      particles[i].show();
+    }
   }
   
   // show regular boxes
