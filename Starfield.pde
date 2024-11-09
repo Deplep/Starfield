@@ -2,10 +2,10 @@ Particle[] particles = new Particle[200];
 int explosionCount = 0;                   // Track the number of particles per explosion
 Boxes[] boxes = new Boxes[200];          // Array to hold boxes
 specialBox[] specialBoxes = new specialBox[1]; // Corrected size to match `boxes`
-
+int background = 0;
 void setup(){
   size(1000, 1000);
-  background(0);
+  background(background);
   
   // Initialize regular boxes
   for (int i = 0; i < boxes.length; i++) {
@@ -19,20 +19,20 @@ void setup(){
 }
 
 void draw(){
-  background(0);
+  background(background);
   
-  // Display and move particles
+  // show and move particles
   for (int i = 0; i < explosionCount; i++) {
     particles[i].move();
     particles[i].show();
   }
   
-  // Display regular boxes
+  // show regular boxes
   for (int i = 0; i < boxes.length; i++) {
     boxes[i].show();
   }
   
-  // Display special boxes (with specific red color)
+  // show special boxes
   for (int i = 0; i < specialBoxes.length; i++) {
     fill(255, 0, 0);  // Red color for specialBox
     specialBoxes[i].show();
@@ -46,7 +46,7 @@ void mousePressed(){
   for (int i = 0; i < boxes.length; i++) {
     if (boxes[i].isClicked(mouseX, mouseY)) {
       boxes[i].isVisible = false; // Hide the box if clicked
-      
+      //background = 0;
       // Initialize particles for explosion at clicked position
       for (int j = 0; j < particles.length; j++) {
         particles[j] = new Particle(mouseX, mouseY);
@@ -55,11 +55,11 @@ void mousePressed(){
     }
   }
   
-  // Optionally check if any special box is clicked
+  // check if any special box is clicked
   for (int i = 0; i < specialBoxes.length; i++) {
     if (specialBoxes[i].isClicked(mouseX, mouseY)) {
       specialBoxes[i].isVisible = false; // Hide the special box if clicked
-      // Optionally trigger a special effect for the special box
+      background = 255;
     }
   }
 }
@@ -92,7 +92,6 @@ class specialBox extends Boxes {
     super(x, y);
   }
 
-  @Override
   void show() {
     if (isVisible) {
       fill(255, 0, 0); // Special color for special box (red)
