@@ -19,7 +19,7 @@ void setup(){
 }
 
 void draw(){
-  background(0);
+  //background(0);
   
   // show and move particles
   for (int i = 0; i < explosionCount; i++) {
